@@ -4,15 +4,41 @@ A collection of ESP32 and Arduino tools and utilities for embedded systems devel
 
 ## 📋 Overview
 
-This repository contains three distinct projects designed to simplify embedded systems development:
+This repository contains four distinct projects designed to simplify embedded systems development:
 
-1. **SD1306 Image Editor** - Image to bitmap converter for OLED displays
-2. **TFT Display Bitmaps Tool** - JPEG to RGB565 converter for TFT displays
-3. **TPL-0501-100 ESP32** - Digital potentiometer control library
+1. **CYD Nixie Clock** - Wi-Fi connected NTP clock for the Cheap Yellow Display (CYD)
+2. **SD1306 Image Editor** - Image to bitmap converter for OLED displays
+3. **TFT Display Bitmaps Tool** - JPEG to RGB565 converter for TFT displays
+4. **TPL-0501-100 ESP32** - Digital potentiometer control library
 
 ## 🛠️ Projects
 
-### 1. SD1306 Image Editor
+### 1. CYD Nixie Clock
+
+An ESP32-based clock sketch that renders a retro Nixie tube theme on the 320×240 TFT included with the Cheap Yellow Display (CYD). The firmware uses Wi-Fi to sync with public NTP servers, keeps time locally using `millis()`, and only redraws digits when they change for flicker-free visuals.
+
+**Features:**
+- Wi-Fi and NTP powered time keeping with hourly resync
+- Custom Nixie style digits with blinking colon animation
+- Tunable timezone offset, NTP servers, and refresh intervals
+- Compatible with Bodmer's TFT_eSPI library and CYD pinout
+
+**Location:** [`CYD_Clock/`](CYD_Clock/)
+
+**Quick Start:**
+```bash
+cd CYD_Clock
+open NixieClockCYD.ino in the Arduino IDE
+```
+1. Configure the TFT_eSPI `User_Setup.h` for your panel/pinout
+2. Add your Wi-Fi credentials and timezone offset in the sketch
+3. Upload to a CYD (ESP32-2432S028R) or similar ESP32+ST7789 board
+
+[Read more →](CYD_Clock/README.md)
+
+---
+
+### 2. SD1306 Image Editor
 
 A bitmap converter tool for SD1306 OLED displays compatible with Arduino, ESP32, and ESP8266 using the Adafruit GFX Library.
 
@@ -33,7 +59,7 @@ python editor3.py
 
 ---
 
-### 2. TFT Display Bitmaps Tool
+### 3. TFT Display Bitmaps Tool
 
 A Python utility that converts JPEG images into RGB565 format C arrays suitable for embedded systems with TFT displays.
 
@@ -60,7 +86,7 @@ python rbg.py <image_file.jpg>
 
 ---
 
-### 3. TPL-0501-100 ESP32
+### 4. TPL-0501-100 ESP32
 
 Arduino sample code for controlling the TPL0501 Digital Potentiometer with ESP32. Includes examples for both single and dual digital potentiometer configurations.
 
@@ -88,6 +114,7 @@ Arduino sample code for controlling the TPL0501 Digital Potentiometer with ESP32
 ## 🎯 Use Cases
 
 - **Embedded Display Development**: Convert images for OLED and TFT displays
+- **IoT Timekeeping**: Build Wi-Fi synchronized clocks for the Cheap Yellow Display
 - **Retro Computing**: Digital potentiometer control for vintage hardware interfaces
 - **ESP32 Projects**: Ready-to-use utilities for common ESP32 display and I/O tasks
 - **Arduino Development**: Cross-platform tools for Arduino-based projects
@@ -117,6 +144,7 @@ Arduino sample code for controlling the TPL0501 Digital Potentiometer with ESP32
 
 2. Navigate to the project folder you need:
    ```bash
+   cd CYD_Clock             # For the Wi-Fi Nixie clock
    cd SD1306-Image-Editor     # For SD1306 tools
    cd TFT_Display_Bitmats_Tool # For TFT tools
    cd TPL-0501-100ESP32       # For digital potentiometer
